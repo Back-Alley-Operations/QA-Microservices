@@ -1,4 +1,14 @@
-const { Client } = require('pg');
-const client = new Client();
+const express = require('express');
+const db = require('../db');
+const compression = require('compression');
+const routes = require('./routes.js')
 
-client.connect();
+const app = express();
+const PORT = 3000;
+
+app.use(compression);
+app.use(express.json());
+app.use('api/qa', routes);
+app.listen(PORT, () => {
+  console.log(`Server listening to port: ${PORT}`);
+});

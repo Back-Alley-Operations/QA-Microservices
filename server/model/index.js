@@ -1,5 +1,1 @@
-const db = require('../../db');
-
-module.exports = {
-  
-}
+exports.questions = require('./questions.js');

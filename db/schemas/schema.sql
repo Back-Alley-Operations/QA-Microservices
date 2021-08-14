@@ -23,7 +23,7 @@ CREATE TABLE Answers(
   date_written BIGINT NOT NULL,
   answerer_name VARCHAR(100) NOT NULL,
   answerer_email VARCHAR(100) NOT NULL,
-  reported SMALLINT DEFAULT 0,
+  reported BOOLEAN DEFAULT FALSE,
   helpful SMALLINT NOT NULL DEFAULT 0,
   FOREIGN KEY(question_id) REFERENCES Questions(id)
 );
@@ -36,17 +36,17 @@ CREATE TABLE Photos(
 );
 
 COPY questions(id, product_id, body, date_written, asker_name, asker_email, reported, helpful)
-FROM '/home/sookim/136HR/SDC/server/csv/questions.csv'
+FROM '/home/sookim/136HR/SDC/db/csv/questions.csv'
 DELIMITER ','
 CSV HEADER;
 
 
 COPY answers(id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful)
-FROM '/home/sookim/136HR/SDC/server/csv/answers.csv'
+FROM '/home/sookim/136HR/SDC/db/csv/answers.csv'
 DELIMITER ','
 CSV HEADER;
 
-COPY Photos(id, answer_id, url)
-FROM '/home/sookim/136HR/SDC/server/csv/answers_photos.csv'
+COPY photos(id, answer_id, url)
+FROM '/home/sookim/136HR/SDC/db/csv/answers_photos.csv'
 DELIMITER ','
 CSV HEADER;

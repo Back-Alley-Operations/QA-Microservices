@@ -9,13 +9,13 @@ module.exports = {
       if (err) {
         res.status(404).send(err);
       } else {
-        const responseData = {
-          product_id: product_id,
-          page: page,
-          count: count,
-          results: data.rows
-        }
-        res.status(200).send(responseData)
+        // const responseData = {
+        //   product_id: product_id,
+        //   page: page,
+        //   count: count,
+        //   results: data.rows
+        // }
+        res.status(200).send(data)
       };
     });
   },
@@ -32,11 +32,12 @@ module.exports = {
 
   helpful: (req, res) => {
     const { answer_id } = req.params;
-    models.questions.post(answer_id, (err, data) => {
+    models.questions.helpful(answer_id, (err, data) => {
       if (err) {
         res.status(404).send(err);
       } else {
         res.status(201).send(data);
       };
     });
-};
+  }
+}

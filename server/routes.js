@@ -15,6 +15,6 @@ router.post('/questions/:question_id/answers', controller.answers.post);
 
 router.patch('/questions/:answer_id/helpful', controller.answers.helpful);
 
-router.patch('/questions/:answer_id/report', controller.answers.report);
+//router.patch('/questions/:answer_id/report', controller.answers.report);
 
 module.exports = router;

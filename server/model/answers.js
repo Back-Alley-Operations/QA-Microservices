@@ -2,7 +2,22 @@ const db = require('../../db');
 
 module.exports = {
   get: (question_id, count, callback) => {
-    var queryStr = `SELECT * FROM answers WHERE question_id = ${question_id} AND reported = false LIMIT ${count};`;
+    //var queryStr = `SELECT * FROM answers WHERE question_id = ${question_id} AND reported = false LIMIT ${count};`;
+    var queryStr = `SELECT json_build_object(
+      'results', (SELECT json_agg(json_build_object(
+        'answer_id', a.id,
+        'body', a.body,
+        'date', a.date_written,
+        'answerer_name', a.answerer_name,
+        'helpfulness', a.helpful,
+        'photos', (SELECT json_agg(json_build_object(
+          'id', p.id,
+          'url', p.url
+        )) FROM photos p WHERE p.answer_id = a.id)
+
+      )) FROM answers a WHERE question_id = ${question_id})
+    );`
+
     db.query(queryStr, (err, data) => {
       if(err) {
         callback(err);

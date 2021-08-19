@@ -53,6 +53,6 @@ CSV HEADER;
 
 CREATE INDEX product_id ON questions(product_id);
 
-CREATE INDEX questions_id ON answers(questions_id);
+CREATE INDEX questions_id ON answers(question_id);
 
 CREATE INDEX answer_id ON photos(answer_id);

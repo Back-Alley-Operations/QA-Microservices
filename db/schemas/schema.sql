@@ -51,8 +51,8 @@ FROM '/home/sookim/136HR/SDC/db/csv/answers_photos.csv'
 DELIMITER ','
 CSV HEADER;
 
-CREATE INDEX product_id ON questions
+CREATE INDEX product_id ON questions(product_id);
 
-CREATE INDEX questions_id ON answers
+CREATE INDEX questions_id ON answers(questions_id);
 
-CREATE INDEX answer_id ON photos
+CREATE INDEX answer_id ON photos(answer_id);

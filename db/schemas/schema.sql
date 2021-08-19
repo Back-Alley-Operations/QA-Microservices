@@ -3,9 +3,9 @@ CREATE DATABASE qa;
 
 \c qa;
 
-DROP TABLE IF EXISTS Questions, Answers, Photos;
+DROP TABLE IF EXISTS questions, answers, photos;
 
-CREATE TABLE Questions(
+CREATE TABLE questions(
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   product_id INTEGER NOT NULL,
   body VARCHAR(1000) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE Questions(
   helpful SMALLINT DEFAULT 0
 );
 
-CREATE TABLE Answers(
+CREATE TABLE answers(
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   question_id INTEGER NOT NULL,
   body VARCHAR(1000) NOT NULL,
@@ -28,11 +28,11 @@ CREATE TABLE Answers(
   FOREIGN KEY(question_id) REFERENCES Questions(id)
 );
 
-CREATE TABLE Photos(
+CREATE TABLE photos(
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   answer_id INTEGER NOT NULL,
   url TEXT NOT NULL,
-  FOREIGN KEY(answer_id) REFERENCES Answers(id)
+  FOREIGN KEY(answer_id) REFERENCES answers(id)
 );
 
 COPY questions(id, product_id, body, date_written, asker_name, asker_email, reported, helpful)
@@ -50,3 +50,9 @@ COPY photos(id, answer_id, url)
 FROM '/home/sookim/136HR/SDC/db/csv/answers_photos.csv'
 DELIMITER ','
 CSV HEADER;
+
+CREATE INDEX product_id ON questions;
+
+CREATE INDEX questions_id ON answers;
+
+CREATE INDEX answer_id ON photoss;

@@ -2,6 +2,7 @@ const models = require('../model');
 
 module.exports = {
   get: (req, res) => {
+    console.log('get questions request received');
     const { product_id } = req.params;
     const count = req.query.count || 5;
     const page = req.query.page || 1;

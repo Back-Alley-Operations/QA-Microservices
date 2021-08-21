@@ -22,7 +22,8 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "newrelic": "^8.1.0",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "redis": "^3.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

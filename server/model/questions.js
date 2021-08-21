@@ -1,4 +1,5 @@
 const db = require('../../db');
+const client = require('../../redis.js');
 
 module.exports = {
   get: (product_id, count, callback) => {
